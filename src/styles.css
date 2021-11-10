@@ -110,9 +110,7 @@ footer input::placeholder{
     padding: 12px 8px;
 }
 
-.time, .send-user, .receive-user, .text-message{
-    /* height: 40px; */
-
+.time, .send-user, .receive-user{
     display: flex;
     align-items: center;
 }

@@ -1,7 +1,16 @@
-function name(params) {
+let getPromiseMessages = axios.get('https://mock-api.driven.com.br/api/v4/uol/messages');
+
+
+
+getPromiseMessages.then(searchMessages);
+
+
+
+
+function searchMessages(answer) {
     
-}
-for (let index = 0; index < array.length; index++) {
-    const element = array[index];
-    
+    let messages = answer.data
+
+
+    console.log(messages);
 }
