@@ -1,0 +1,124 @@
+*{
+    font: Roboto;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #F3F3F3;
+}
+header{
+    width: 375px;
+    height: 80px;
+
+    position: sticky;
+
+    box-sizing: border-box;
+    padding: 0 22px;
+    margin-bottom: 26px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #FFFFFF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+header ion-icon{
+    font-size: 42px;
+}
+footer{
+    width: 375px;
+    height: 80px;
+
+    position:fixed;
+    bottom: 0px;
+
+    box-sizing: border-box;
+    padding: 0 22px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    background: #FFFFFF;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+footer ion-icon{
+    font-size: 26px;
+}
+footer input{
+    width: 200px;
+    height: 30px;
+
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 400;
+
+    font-size: 18px;
+    line-height: 21px;
+    
+    color: #000000;
+
+    border: none; 
+    border-width: 0; 
+    box-shadow: none;
+
+    outline: none;
+}
+
+footer input::placeholder{
+    font-family: Roboto;
+    font-style: italic;
+    font-weight: 400;
+
+    font-size: 18px;
+    line-height: 21px;
+    
+    color: #000000;
+}
+.messages{
+    width: 375px;
+
+    display: flex;
+    flex-direction: column;
+    gap:4px;
+    
+}
+.enter-room, .leave-room{
+    background: #DCDCDC;
+}
+.message{
+    background: #FFFFFF
+}
+.private-message{
+    background: #FFDEDE;
+}
+.message, .leave-room, .private-message, .enter-room{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    left: 0px;
+    top: 150px;
+    
+    border-radius: 2px;
+
+    display: flex;
+    align-items: center;
+
+    box-sizing: border-box;
+    padding: 12px 8px;
+}
+
+.time, .send-user, .receive-user, .text-message{
+    /* height: 40px; */
+
+    display: flex;
+    align-items: center;
+}
+.time{
+    color: #AAAAAA;
+}
+.send-user, .receive-user{
+    font-weight: bold;
+}

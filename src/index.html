@@ -5,10 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./reset.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles.css">
     <title>Bate-Papo UOL</title>
 </head>
 <body>
+    <header>
+        <img src="/images/logo.png" alt="">
+        <ion-icon name="people"></ion-icon>
+    </header>
+    <section class="messages">
+        <div class="enter-room">
+            <p class="time">(09:21:45)&nbsp;</p>
+            <p class="send-user">João&nbsp;</p>entra na sala...
+        </div>
+        <div class="message">
+            <p class="time">(09:21:45)&nbsp;</p>
+            <p class="send-user">João&nbsp;</p>para&nbsp;
+            <p class="receive-user">Todos</p>:&nbsp;Bom dia
+        </div>
+        <div class="private-message">
+            <p class="time">(09:21:45)&nbsp;</p>
+            <p class="send-user">João&nbsp;</p>reservadamente para&nbsp;
+            <p class="receive-user">Maria</p><p>:&nbsp;</p>Oi gatinha quer tc
+        </div>
+        <div class="leave-room">
+            <p class="time">(09:21:45)&nbsp;</p>
+            <p class="send-user">Maria&nbsp;</p>sai da sala...
+        </div>
+    </section>
+    <footer>
+        <input type="text" placeholder="Escreva aqui...">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+    </footer>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>
