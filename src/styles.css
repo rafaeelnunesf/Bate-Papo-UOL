@@ -6,12 +6,14 @@ body{
     flex-direction: column;
     align-items: center;
     background: #F3F3F3;
+
+    position: relative;
 }
 header{
     width: 375px;
     height: 80px;
 
-    position: sticky;
+    position: fixed;
 
     box-sizing: border-box;
     padding: 0 22px;
@@ -83,9 +85,9 @@ footer input::placeholder{
     display: flex;
     flex-direction: column;
     gap:4px;
-    
+    margin:106px 0 90px 0;
 }
-.enter-room, .leave-room{
+.status{
     background: #DCDCDC;
 }
 .message{
@@ -94,7 +96,7 @@ footer input::placeholder{
 .private-message{
     background: #FFDEDE;
 }
-.message, .leave-room, .private-message, .enter-room{
+.message, .status, .private-message{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
