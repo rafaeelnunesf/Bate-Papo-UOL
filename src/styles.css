@@ -110,15 +110,15 @@ footer input::placeholder{
 
     box-sizing: border-box;
     padding: 12px 8px;
+
+    overflow-wrap: anywhere;  
 }
 
-.time, .send-user, .receive-user{
-    display: flex;
-    align-items: center;
-}
+
 .time{
     color: #AAAAAA;
 }
 .send-user, .receive-user{
     font-weight: bold;
+    overflow-wrap: anywhere;
 }
