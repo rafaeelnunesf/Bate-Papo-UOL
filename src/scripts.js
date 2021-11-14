@@ -1,9 +1,17 @@
-
 let userName
+
+function userEnter() {
+    const inputScreen = document.querySelector('.input-screen')
+    if(inputScreen.classList.contains('hidden')){
+        inputScreen.classList.remove('hidden')
+    }
+    userName = document.querySelector('.input-screen input').value
+    inputScreen.classList.add('hidden')
+    EnterRoom()
+}
 
 // Essa função entra na sala
 let EnterRoom = () => {
-    userName = prompt('qual é o seu lindo nome?')
     userName = {
         name: userName
     }
@@ -15,8 +23,7 @@ let EnterRoom = () => {
         window.location.reload()
     }
     GetMessages()
-    setTimeout(GetMessages,3000)
-    // setInterval(GetMessages,3000)
+    setInterval(GetMessages,3000)
 }
 
 
@@ -51,7 +58,7 @@ function GetMessages(){
             
             if(statusMessages === 'status'){
                 array.push(`
-                <div class="status msg${i}">
+                <div class="status">
                     <p>
                         <span class="time">(${timeMessages})&nbsp;</span><span class="send-user">${fromMessages}&nbsp;</span>${textMessages}
                     </p>
@@ -59,7 +66,7 @@ function GetMessages(){
                 `)
             }else if (statusMessages === 'private_message'){
                 array.push(`
-                <div class="private-message msg${i}">
+                <div class="private-message">
                     <p>
                         <span class="time">(${timeMessages})&nbsp;</span><span class="send-user">${fromMessages}&nbsp;</span>reservadamente para&nbsp;<span class="receive-user">${toMessages}</span><p>:&nbsp;</p>${textMessages}
                     </p>
@@ -67,7 +74,7 @@ function GetMessages(){
                 `)
             }else if(statusMessages === 'message'){                
                 array.push(`
-                <div class="message msg${i}">
+                <div class="message data-identifier="message"">
                     <p>
                     <span class="time">(${timeMessages})</span>&nbsp;<span class="send-user">${fromMessages}&nbsp;</span>para&nbsp;<span class="receive-user">Todos</span>:&nbsp;${textMessages}
                     </p>
@@ -84,7 +91,7 @@ function GetMessages(){
 }
 
 let sendMessage = () =>{
-    const text = document.querySelector('input')
+    const text = document.querySelector('.footer input')
     let message = {
         from: userName.name,
         to: "Todos",
@@ -107,9 +114,15 @@ let sendMessage = () =>{
 
 }
 
+let promiseGetParticipants = axios.get('https://mock-api.driven.com.br/api/v4/uol/participants')
+promiseGetParticipants.then(GetParticipants)
+function GetParticipants(answer) {
+    let participants = answer.data
+    console.log(participants);
+}
 
-EnterRoom();
-keepConection(userName);
+// EnterRoom();
+// keepConection(userName);
 
 
 

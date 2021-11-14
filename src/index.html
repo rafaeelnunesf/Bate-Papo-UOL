@@ -17,30 +17,17 @@
         <img src="/images/logo.png" alt="">
         <ion-icon name="people"></ion-icon>
     </header>
-    <section class="messages">
-        <!-- <div class="enter-room">
-            <p class="time">(09:21:45)&nbsp;</p>
-            <p class="send-user">João&nbsp;</p>entra na sala...
-        </div>
-        <div class="message">
-            <p class="time">(09:21:45)&nbsp;</p>
-            <p class="send-user">João&nbsp;</p>para&nbsp;
-            <p class="receive-user">Todos</p>:&nbsp;Bom dia
-        </div>
-        <div class="private-message">
-            <p class="time">(09:21:45)&nbsp;</p>
-            <p class="send-user">João&nbsp;</p>reservadamente para&nbsp;
-            <p class="receive-user">Maria</p><p>:&nbsp;</p>Oi gatinha quer tc
-        </div>
-        <div class="leave-room">
-            <p class="time">(09:21:45)&nbsp;</p>
-            <p class="send-user">Maria&nbsp;</p>sai da sala...
-        </div> -->
+    <section class="input-screen">
+        <img src="/images/logo.png" alt="">
+        <input type="text" placeholder="Digite seu nome">
+        <button onclick="userEnter()">Entrar</button>
     </section>
-    <footer>
+    <section class="messages">
+    </section>
+    <div class="footer">
         <input type="text" placeholder="Escreva aqui...">
         <ion-icon name="paper-plane-outline" onclick="sendMessage()" data-identifier="send-message"></ion-icon>
-    </footer>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./scripts.js"></script>
