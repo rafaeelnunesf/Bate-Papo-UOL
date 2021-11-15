@@ -1,6 +1,6 @@
 let userName
-let toUser
-let typeMessage
+let toUser = 'Todos'
+let typeMessage = 'message'
 function userEnter() {
     const inputScreen = document.querySelector('.input-screen')
     if(inputScreen.classList.contains('hidden')){
@@ -12,6 +12,20 @@ function userEnter() {
 }
 function addTransition(){
     getParticipants()
+    setInterval(getParticipants,10000)
+
+    const textBoxInfo = document.querySelector('.message-info')
+    const condition = textBoxInfo.classList.contains('display')
+    if (!condition) {
+        textBoxInfo.classList.add('display')
+    }
+
+    const public = document.querySelector('.public').children[2]
+    const private = document.querySelector('.private').children[2]
+    toUser = undefined
+    typeMessage = undefined
+    public.classList.add('hidden')
+    private.classList.add('hidden')
 
     let header = document.querySelector('header')
     let footer = document.querySelector('.footer')
@@ -31,12 +45,10 @@ function addTransition(){
 
     header.classList.add('add-index')
     footer.classList.add('add-index')
-    messages.classList.add('add-index-messages')
-    
+    messages.classList.add('add-index-messages')  
   }
 // Essa função entra na sala
 let EnterRoom = () => {
-    console.log(userName)
     userName = {
         name: userName
     }
@@ -49,15 +61,13 @@ let EnterRoom = () => {
     }
     GetMessages()
     setInterval(GetMessages,3000)
-    setInterval(keepConection,5000,userName.name)
-
+    setInterval(keepConection,5000,userName)
 }
 
 
 //Essa função mantém o usuário conectado
-function keepConection(userName) {
-    let axiosUserInRoom = (userName) => axios.post('https://mock-api.driven.com.br/api/v4/uol/status',userName)
-
+function keepConection(Name) {
+    axios.post('https://mock-api.driven.com.br/api/v4/uol/status',Name) 
 }
 
 // Essa função carrega as mensagens
@@ -75,35 +85,34 @@ function GetMessages(){
         let textMessages
         let toMessages
         let timeMessages
-
+        
         for(let i = 0; i < messages.length;i++){
             statusMessages = messages[i].type
             fromMessages = messages[i].from
             textMessages = messages[i].text
             toMessages = messages[i].to
             timeMessages = messages[i].time
-            
             if(statusMessages === 'status'){
                 array.push(`
                 <div class="status">
-                    <p>
-                        <span class="time">(${timeMessages})&nbsp;</span><span class="send-user">${fromMessages}&nbsp;</span>${textMessages}
-                    </p>
+                <p>
+                <span class="time">(${timeMessages})&nbsp;</span><span class="send-user">${fromMessages}&nbsp;</span>${textMessages}
+                </p>
                 </div>
                 `)
-            }else if (statusMessages === 'private_message'){
+            }else if (statusMessages === 'private_message' && (fromMessages===userName.name || toMessages=== userName.name)){
                 array.push(`
-                <div class="private-message">
+                <div class="private-message" data-identifier="message">
                     <p>
-                        <span class="time">(${timeMessages})&nbsp;</span><span class="send-user">${fromMessages}&nbsp;</span>reservadamente para&nbsp;<span class="receive-user">${toMessages}</span><p>:&nbsp;</p>${textMessages}
+                        <span class="time">${timeMessages}</span>&nbsp;<span class="send-user">${fromMessages}&nbsp;</span>reservadamente para&nbsp;<span class="receive-user">${toMessages}</span>:&nbsp;${textMessages}
                     </p>
                 </div>
                 `)
             }else if(statusMessages === 'message'){                
                 array.push(`
-                <div class="message data-identifier="message"">
+                <div class="message" data-identifier="message">
                     <p>
-                    <span class="time">(${timeMessages})</span>&nbsp;<span class="send-user">${fromMessages}&nbsp;</span>para&nbsp;<span class="receive-user">Todos</span>:&nbsp;${textMessages}
+                        <span class="time">${timeMessages}</span>&nbsp;<span class="send-user">${fromMessages}&nbsp;</span>para&nbsp;<span class="receive-user">${toMessages}</span>:&nbsp;${textMessages}
                     </p>
                 </div>
                 `)
@@ -113,17 +122,22 @@ function GetMessages(){
         for (let i =0; i< array.length;i++){
             messagesHTML.innerHTML += array[i]
         }
-        messagesHTML.children[99].scrollIntoView();
+        messagesHTML.children[array.length-1].scrollIntoView();
     }
 }
 
 let sendMessage = () =>{
     const text = document.querySelector('.footer input')
+
+    console.log(userName.name);
+    console.log(toUser);
+    console.log(text.value);
+    console.log(typeMessage);
     let message = {
         from: userName.name,
-        to: "Todos",
+        to: toUser,
         text: text.value,
-        type: "message"
+        type: typeMessage
     }
     text.value = ''
     let request = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages',message)
@@ -135,6 +149,7 @@ let sendMessage = () =>{
         GetMessages() 
     }
     function errorSendMsg(answer) {
+        console.log(answer.response)
         alert('usuário saiu da sala')
         window.location.reload()  
     }
@@ -164,13 +179,21 @@ function getParticipants() {
             </div>
             `
         }
-    }
-    
+    }   
 }
 
 function chooseContact(contact) {
     const check = contact.children[2]
     const div = contact.parentNode
+
+    if(contact===div.children[0]){
+        const visibility = document.querySelector('.public')
+        check.classList.remove('hidden')
+        toUser = contact.children[1].innerHTML
+        chooseVisibility(visibility)
+        removetransition()
+        return
+    }
 
     for(let i =0; i<div.childElementCount;i++){
         let iconCheck = div.children[i].children[2]
@@ -181,8 +204,9 @@ function chooseContact(contact) {
     }
     check.classList.remove('hidden')
     toUser = contact.children[1].innerHTML
+    
+    removetransition()
 }
-// EnterRoom();
 function chooseVisibility(visibility) {
     const check = visibility.children[2]
     const div = visibility.parentNode
@@ -199,13 +223,47 @@ function chooseVisibility(visibility) {
     if(visibility===div.children[0]){
         typeMessage = 'message'
     }else if(visibility===div.children[1]){
-        typeMessage = 'private-message'
+        typeMessage = 'private_message'
+    }
+    removetransition()
+}
+function removetransition(background) {
+    console.log(background);
+
+    if(background !== undefined){
+        toUser = 'Todos'
+        typeMessage = 'message'
+    }
+
+    if(toUser!==undefined && typeMessage!==undefined){
+        privateMsg()
+        let header = document.querySelector('header')
+        let footer = document.querySelector('.footer')
+        let messages = document.querySelector('.messages')
+        
+        let activeParticipants = document.querySelector('.active-participants')
+        let background = document.querySelector('.background')
+        let contacts = document.querySelector('.contacts')
+        
+        activeParticipants.classList.add('hidden')
+        background.classList.add('hidden')
+        contacts.classList.add('hidden')
+
+        activeParticipants.classList.remove('transition')
+        background.classList.remove('transition')
+        contacts.classList.remove('transition')
+
+        header.classList.remove('add-index')
+        footer.classList.remove('add-index')
+        messages.classList.remove('add-index-messags')
     }
 }
-
-
-
-
-
-
-
+function privateMsg(){
+    if (toUser === 'Todos'|| typeMessage ==='message'){
+        return
+    }
+    const textBoxInfo = document.querySelector('.message-info')
+    console.log(textBoxInfo);
+    textBoxInfo.classList.remove('display')
+    textBoxInfo.innerHTML = `Enviando para&nbsp<p> ${toUser}</p>(reservadamente)`
+}

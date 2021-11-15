@@ -1,5 +1,5 @@
 *{
-    font: Roboto;
+    font-family: Roboto;
 }
 body{
     display: flex;
@@ -32,7 +32,7 @@ header ion-icon{
 
 .footer{
     width: 375px;
-    height: 80px;
+    min-height: 80px;
 
     position:fixed;
     bottom: 0px;
@@ -52,7 +52,7 @@ header ion-icon{
     font-size: 26px;
 }
 .footer input{
-    width: 200px;
+    width: 280px;
     height: 30px;
 
     font-family: Roboto;
@@ -80,6 +80,28 @@ header ion-icon{
     line-height: 21px;
     
     color: #000000;
+}
+.text-box{
+    width: 280px;
+}
+.message-info{
+    width: 100%;
+    display: flex;
+
+    color: #000;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 20px;
+
+    overflow-wrap: unset;
+    
+    margin-bottom: 15px;
+}
+
+.message-info p{
+    max-width: 65px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .messages{
     width: 375px;
@@ -181,7 +203,6 @@ header ion-icon{
     color: #696969;
 }
 .hidden{
-
     z-index: -1;
     visibility: hidden;
 }
@@ -253,6 +274,7 @@ header ion-icon{
     flex-direction: column;
     gap: 1px;
     overflow-y: scroll;
+    max-height: 400px;
 }
 .everyone, .participant,.public,.private{
     display: flex;
@@ -287,13 +309,12 @@ header ion-icon{
     color: #000000;
 }
 
-/* .message, .status, .private-message,header,.footer{
-    visibility: hidden;
-} */
-
 .add-index{
     z-index: 0;
 }
 .add-index-messages{
     z-index: -3;
+}
+.display{
+    display: none;
 }
