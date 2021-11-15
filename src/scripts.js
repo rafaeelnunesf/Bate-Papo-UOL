@@ -254,11 +254,13 @@ function chooseVisibility(visibility) {
 function removeTransition(background) {
     infoMsg()
 
+    // Se for clicado no background o cod entende que é pra todos
     if(background !== undefined){
         toUser = 'Todos'
         typeMessage = 'message'
     }
 
+    // Quando o usuário seleciona o participante e a visibilidade
     if(toUser!==undefined && typeMessage!==undefined){
 
         let header = document.querySelector('header')
