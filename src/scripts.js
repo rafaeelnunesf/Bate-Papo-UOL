@@ -1,5 +1,6 @@
 let userName
-
+let toUser
+let typeMessage
 function userEnter() {
     const inputScreen = document.querySelector('.input-screen')
     if(inputScreen.classList.contains('hidden')){
@@ -10,6 +11,8 @@ function userEnter() {
     EnterRoom()
 }
 function addTransition(){
+    getParticipants()
+
     let header = document.querySelector('header')
     let footer = document.querySelector('.footer')
     let messages = document.querySelector('.messages')
@@ -26,14 +29,14 @@ function addTransition(){
     background.classList.add('transition')
     contacts.classList.add('transition')
 
-    /* messages.classList.add('hidden') */
     header.classList.add('add-index')
     footer.classList.add('add-index')
     messages.classList.add('add-index-messages')
-    console.log('sto clicando');
+    
   }
 // Essa função entra na sala
 let EnterRoom = () => {
+    console.log(userName)
     userName = {
         name: userName
     }
@@ -46,13 +49,15 @@ let EnterRoom = () => {
     }
     GetMessages()
     setInterval(GetMessages,3000)
+    setInterval(keepConection,5000,userName.name)
+
 }
 
 
 //Essa função mantém o usuário conectado
 function keepConection(userName) {
     let axiosUserInRoom = (userName) => axios.post('https://mock-api.driven.com.br/api/v4/uol/status',userName)
-    setInterval(axiosUserInRoom,5000,userName)
+
 }
 
 // Essa função carrega as mensagens
@@ -136,15 +141,67 @@ let sendMessage = () =>{
 
 }
 
-let promiseGetParticipants = axios.get('https://mock-api.driven.com.br/api/v4/uol/participants')
-promiseGetParticipants.then(GetParticipants)
-function GetParticipants(answer) {
-    let participants = answer.data
-    console.log(participants);
+function getParticipants() {
+    let promiseGetParticipants = axios.get('https://mock-api.driven.com.br/api/v4/uol/participants')
+    promiseGetParticipants.then(successGetParticipants)
+    function successGetParticipants(answer) {
+        let users = document.querySelector('.users')
+        users.innerHTML = ""
+        users.innerHTML = `
+        <div class="everyone" onclick="chooseContact(this)">
+            <ion-icon name="people" class="profile-icon"></ion-icon>
+            <p>Todos</p>
+            <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+        </div>
+        `
+        let participants = answer.data
+        for(let i =0; i<participants.length;i++){
+            users.innerHTML += `
+            <div class="participant" onclick="chooseContact(this)">
+                <ion-icon name="person-circle" class="profile-icon"></ion-icon>
+                <p>${participants[i].name}</p>
+                <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+            </div>
+            `
+        }
+    }
+    
 }
 
+function chooseContact(contact) {
+    const check = contact.children[2]
+    const div = contact.parentNode
+
+    for(let i =0; i<div.childElementCount;i++){
+        let iconCheck = div.children[i].children[2]
+        let condition = iconCheck.classList.contains('hidden')
+        if(!condition){
+            iconCheck.classList.add('hidden')
+        }
+    }
+    check.classList.remove('hidden')
+    toUser = contact.children[1].innerHTML
+}
 // EnterRoom();
-keepConection(userName);
+function chooseVisibility(visibility) {
+    const check = visibility.children[2]
+    const div = visibility.parentNode
+
+    for(let i =0; i<div.childElementCount;i++){
+        let iconCheck = div.children[i].children[2]
+        let condition = iconCheck.classList.contains('hidden')
+        if(!condition){
+            iconCheck.classList.add('hidden')
+        }
+    }
+    check.classList.remove('hidden')
+
+    if(visibility===div.children[0]){
+        typeMessage = 'message'
+    }else if(visibility===div.children[1]){
+        typeMessage = 'private-message'
+    }
+}
 
 
 

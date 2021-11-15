@@ -221,6 +221,9 @@ header ion-icon{
     transition: all 300ms ease-in;
     z-index: 1;
 }
+::-webkit-scrollbar{
+    display: none;
+}
 /* trocar essa parte pelo .contacts.trasition depois*/
 .contacts.transition{
     width: 260px;

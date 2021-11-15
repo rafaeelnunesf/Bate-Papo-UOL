@@ -35,7 +35,7 @@
         <div class="contacts hidden">
             <p class="info-contacts">Escolha um contato<br>para enviar mensagem</p>
             <div class="users">
-                <div class="everyone">
+                <!-- <div class="everyone">
                     <ion-icon name="people" class="profile-icon"></ion-icon>
                     <p>Todos</p>
                     <ion-icon name="checkmark-sharp" class="check"></ion-icon>
@@ -49,18 +49,21 @@
                     <ion-icon name="person-circle" class="profile-icon"></ion-icon>
                     <p>Maria</p>
                     <ion-icon name="checkmark-sharp" class="check"></ion-icon>
-                </div>
+                </div> -->
             </div>
             <p class="choose-visibility">Escolha a visibilidade:</p>
-            <div class="public">
-                <ion-icon name="lock-open" class="profile-icon"></ion-icon>
-                <p>Público</p>
-                <ion-icon name="checkmark-sharp" class="check"></ion-icon>
-            </div>
-            <div class="private">
-                <ion-icon name="lock-closed" class="profile-icon"></ion-icon>
-                <p>Reservadamente</p>
-                <ion-icon name="checkmark-sharp" class="check"></ion-icon>   
+
+            <div class="visibilities">
+                <div class="public" onclick="chooseVisibility(this)">
+                    <ion-icon name="lock-open" class="profile-icon"></ion-icon>
+                    <p>Público</p>
+                    <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>
+                </div>
+                <div class="private" onclick="chooseVisibility(this)">
+                    <ion-icon name="lock-closed" class="profile-icon"></ion-icon>
+                    <p>Reservadamente</p>
+                    <ion-icon name="checkmark-sharp" class="check hidden"></ion-icon>   
+                </div>
             </div>
         </div>
     </section>
