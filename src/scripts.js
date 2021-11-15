@@ -9,7 +9,29 @@ function userEnter() {
     inputScreen.classList.add('hidden')
     EnterRoom()
 }
+function addTransition(){
+    let header = document.querySelector('header')
+    let footer = document.querySelector('.footer')
+    let messages = document.querySelector('.messages')
+    
+    let activeParticipants = document.querySelector('.active-participants')
+    let background = document.querySelector('.background')
+    let contacts = document.querySelector('.contacts')
+    
+    activeParticipants.classList.remove('hidden')
+    background.classList.remove('hidden')
+    contacts.classList.remove('hidden')
 
+    activeParticipants.classList.add('transition')
+    background.classList.add('transition')
+    contacts.classList.add('transition')
+
+    /* messages.classList.add('hidden') */
+    header.classList.add('add-index')
+    footer.classList.add('add-index')
+    messages.classList.add('add-index-messages')
+    console.log('sto clicando');
+  }
 // Essa função entra na sala
 let EnterRoom = () => {
     userName = {
@@ -99,15 +121,15 @@ let sendMessage = () =>{
         type: "message"
     }
     text.value = ''
-    let requisicao = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages',message)
+    let request = axios.post('https://mock-api.driven.com.br/api/v4/uol/messages',message)
 
-    requisicao.then(ok)
-    requisicao.catch(deuruim)
+    request.then(successSendMsg)
+    request.catch(errorSendMsg)
 
-    function ok (answer){
+    function successSendMsg (answer){
         GetMessages() 
     }
-    function deuruim(answer) {
+    function errorSendMsg(answer) {
         alert('usuário saiu da sala')
         window.location.reload()  
     }
@@ -122,7 +144,7 @@ function GetParticipants(answer) {
 }
 
 // EnterRoom();
-// keepConection(userName);
+keepConection(userName);
 
 
 

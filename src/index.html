@@ -13,23 +13,61 @@
     <title>Bate-Papo UOL</title>
 </head>
 <body>
-    <header>
-        <img src="/images/logo.png" alt="">
-        <ion-icon name="people"></ion-icon>
-    </header>
     <section class="input-screen">
         <img src="/images/logo.png" alt="">
         <input type="text" placeholder="Digite seu nome">
         <button onclick="userEnter()">Entrar</button>
     </section>
-    <section class="messages">
+    <main >
+        <header>
+            <img src="/images/logo.png" alt="">
+            <ion-icon name="people" class="icon-users" onclick="addTransition()"></ion-icon>
+        </header>
+        <section class="messages">
+        </section>
+        <div class="footer">
+            <input type="text" placeholder="Escreva aqui...">
+            <ion-icon name="paper-plane-outline" onclick="sendMessage()" data-identifier="send-message"></ion-icon>
+        </div>
+    </main>
+    <section class="active-participants hidden">
+        <div class="background hidden"></div>
+        <div class="contacts hidden">
+            <p class="info-contacts">Escolha um contato<br>para enviar mensagem</p>
+            <div class="users">
+                <div class="everyone">
+                    <ion-icon name="people" class="profile-icon"></ion-icon>
+                    <p>Todos</p>
+                    <ion-icon name="checkmark-sharp" class="check"></ion-icon>
+                </div>
+                <div class="participant">
+                    <ion-icon name="person-circle" class="profile-icon"></ion-icon>
+                    <p>João</p>
+                    <ion-icon name="checkmark-sharp" class="check"></ion-icon>
+                </div>
+                <div class="participant">
+                    <ion-icon name="person-circle" class="profile-icon"></ion-icon>
+                    <p>Maria</p>
+                    <ion-icon name="checkmark-sharp" class="check"></ion-icon>
+                </div>
+            </div>
+            <p class="choose-visibility">Escolha a visibilidade:</p>
+            <div class="public">
+                <ion-icon name="lock-open" class="profile-icon"></ion-icon>
+                <p>Público</p>
+                <ion-icon name="checkmark-sharp" class="check"></ion-icon>
+            </div>
+            <div class="private">
+                <ion-icon name="lock-closed" class="profile-icon"></ion-icon>
+                <p>Reservadamente</p>
+                <ion-icon name="checkmark-sharp" class="check"></ion-icon>   
+            </div>
+        </div>
     </section>
-    <div class="footer">
-        <input type="text" placeholder="Escreva aqui...">
-        <ion-icon name="paper-plane-outline" onclick="sendMessage()" data-identifier="send-message"></ion-icon>
-    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="./scripts.js"></script>
 </body>
 </html>
+
