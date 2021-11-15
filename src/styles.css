@@ -92,17 +92,15 @@ header ion-icon{
     font-size: 15px;
     font-weight: 300;
     line-height: 20px;
-
-    overflow-wrap: unset;
-    
-    margin-bottom: 15px;
 }
 
-.message-info p{
-    max-width: 65px;
+.message-info p, .message-info .to-message{
+    max-width: 60px;
     overflow: hidden;
     text-overflow: ellipsis;
+    
 }
+
 .messages{
     width: 375px;
 
@@ -219,7 +217,6 @@ header ion-icon{
     transition: all 300ms ease-in;
 }
 
-/* descomentar aqui quando terminar o contacts */
 .background{
     width: 375px;
     height: 100%;
@@ -229,7 +226,6 @@ header ion-icon{
     z-index: 1;
 }
 
-/* Colocar o trasition aqui */
 .background.transition{
     width: 115px;
     transition: width 300ms ease-in, background 300ms ease-in;
@@ -245,7 +241,7 @@ header ion-icon{
 ::-webkit-scrollbar{
     display: none;
 }
-/* trocar essa parte pelo .contacts.trasition depois*/
+
 .contacts.transition{
     width: 260px;
     background: #FFFFFF;
@@ -280,10 +276,17 @@ header ion-icon{
     display: flex;
     align-items: center;
     min-height: 36px;
+
 }
 .everyone p, .participant p,.public p,.private p{
     width: 78%;
     overflow-wrap: anywhere;
+}
+.participant p{
+    max-width: 300px;
+    max-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
 }
 .profile-icon{
@@ -317,4 +320,23 @@ header ion-icon{
 }
 .display{
     display: none;
+}
+.wait{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wait img{
+    width: 300px;
+}
+.wait p{
+    position: relative;
+    top: -40px;
+    font-family: Roboto;
+    font-weight: 400;
+
+    font-size: 20px;
+    line-height: 21px;
+    
+    color: #000000;
 }
