@@ -97,8 +97,8 @@ header ion-icon{
 .message-info p, .message-info .to-message{
     max-width: 60px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    
+    text-overflow: ellipsis;   
+    max-height: 20px;
 }
 
 .messages{
