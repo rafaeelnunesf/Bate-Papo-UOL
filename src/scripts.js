@@ -253,7 +253,7 @@ function chooseVisibility(visibility) {
 }
 function removeTransition(background) {
     infoMsg()
-
+    console.log(background)
     // Se for clicado no background o cod entende que é pra todos
     if(background !== undefined){
         toUser = 'Todos'
